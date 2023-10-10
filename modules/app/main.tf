@@ -59,9 +59,9 @@ resource "aws_iam_role" "role" {
       Version = "2012-10-17"
       Statement = [
         {
-          "sid": "VisualEditor",
+          "sid": "VisualEditor0",
           "Effect": "Allow",
-          Action   = [
+          "Action": [
           "ssm:DescribeParameters",
           "ssm:GetParametersByPath",
           "ssm:GetParameters"
