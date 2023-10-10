@@ -36,7 +36,6 @@ resource "aws_launch_template" "template" {
 
   vpc_security_group_ids = [aws_security_group.security_group.id]
 
-
   tag_specifications {
     resource_type = "instance"
 
@@ -45,4 +44,15 @@ resource "aws_launch_template" "template" {
     }
   }
 
+}
+resource "aws_autoscaling_group" "asg" {
+  name               = "${var.env}-${var.component}"
+  desired_capacity   = 1
+  max_size           = 1
+  min_size           = 1
+
+  launch_template {
+    id      = aws_launch_template.template.id
+    version = "$Latest"
+  }
 }
