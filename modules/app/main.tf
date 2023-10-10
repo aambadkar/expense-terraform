@@ -35,6 +35,9 @@ resource "aws_launch_template" "template" {
 
 
   vpc_security_group_ids = [aws_security_group.security_group.id]
+  user_data              = filebase64(templatefile("${path.module}/userdata.sh"), {
+  role_name = var.component
+}
 
   tag_specifications {
     resource_type = "instance"
