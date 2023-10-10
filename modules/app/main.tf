@@ -12,6 +12,15 @@ resource "aws_security_group" "security_group" {
 
   }
 
+  ingress {
+    description      = "SSH"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = var.bastian-node_cidr
+
+  }
+
   egress {
     from_port        = 0
     to_port          = 0

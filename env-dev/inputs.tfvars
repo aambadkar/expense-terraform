@@ -9,4 +9,4 @@ default_vpc_id = "vpc-0749d59ec18f461fb"
 account_no = "865190527461"
 default_vpc_cidr = "172.31.0.0/16"
 default_route_table_id = "rtb-05b65bf10436b33b7"
-
+bastian-node_cidr = ["172.31.20.33/32"]
