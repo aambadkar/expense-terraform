@@ -36,8 +36,6 @@ resource "aws_security_group" "security_group" {
 resource "aws_iam_role" "role" {
   name = "${var.env}-${var.component}-role"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -53,21 +51,22 @@ resource "aws_iam_role" "role" {
   })
 
   inline_policy {
-    name = "${var.env}-${var.component}-policy"
+    name = "my_inline_policy"
 
     policy = jsonencode({
-      Version = "2012-10-17"
-      Statement = [
+      "Version": "2012-10-17",
+      "Statement": [
         {
-          "sid": "VisualEditor0",
+          "Sid": "VisualEditor0",
           "Effect": "Allow",
           "Action": [
-          "ssm:DescribeParameters",
-          "ssm:GetParametersByPath",
-          "ssm:GetParameters"
+            "ssm:DescribeParameters",
+            "ssm:GetParameterHistory",
+            "ssm:GetParametersByPath",
+            "ssm:GetParameters"
           ],
           "Resource": "*"
-        },
+        }
       ]
     })
   }
