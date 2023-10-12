@@ -11,15 +11,18 @@ module "vpc" {
  default_route_table_id = var.default_route_table_id
 }
 
-#module "public-lb" {
-# source = "./modules/alb"
-# alb_type          = "public"
-# alg_sg_allow_cidr = "0.0.0.0/0"
-# env               = var.env
-# internal          = false
-# subnets           = module.vpc.public_subnets
-# vpc_id            = module.vpc.vpc_id
-#}
+module "public-lb" {
+ source = "./modules/alb"
+ alb_type          = "public"
+ alg_sg_allow_cidr = "0.0.0.0/0"
+ env               = var.env
+ internal          = false
+ subnets           = module.vpc.public_subnets
+ vpc_id            = module.vpc.vpc_id
+ dns_name          = "${var.env}.devopsa17.online"
+ zone_id           = "Z05576924GZ1MK3S5OBT"
+ tg_arn            = module.frontend.tg_arn
+}
 
 module "private-lb" {
  source = "./modules/alb"
