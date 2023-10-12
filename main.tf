@@ -29,6 +29,8 @@ module "private-lb" {
  internal          = true
  subnets           = module.vpc.private_subnets
  vpc_id            = module.vpc.vpc_id
+ dns_name          = "backend-${var.env}.devopsa17.online"
+ zone_id           = "Z05576924GZ1MK3S5OBT"
 }
 
 #module "frontend" {
