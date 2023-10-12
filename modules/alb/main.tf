@@ -43,3 +43,17 @@ resource "aws_route53_record" "www" {
   ttl     = 300
   records = [aws_lb.alb.dns_name]
 }
+resource "aws_lb" "front_end" {
+  # ...
+}
+
+resource "aws_lb_listener" "listener-http" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = var.tg_arn
+  }
+}
