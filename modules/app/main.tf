@@ -134,5 +134,6 @@ resource "aws_lb_target_group" "tg" {
     interval = 5
     port = var.app_port
     path = "/health"
+    timeout = 3
   }
 }
