@@ -128,4 +128,7 @@ resource "aws_lb_target_group" "tg" {
   port     = var.app_port
   protocol = "HTTP"
   vpc_id   = var.vpc_id
+  health_check {
+    enabled = true
+  }
 }
