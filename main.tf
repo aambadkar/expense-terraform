@@ -20,7 +20,7 @@ module "vpc" {
 # subnets           = module.vpc.public_subnets
 # vpc_id            = module.vpc.vpc_id
 #}
-#
+
 module "private-lb" {
  source = "./modules/alb"
  alb_type          = "private"
@@ -48,6 +48,7 @@ module "private-lb" {
 #}
 #
 module "backend" {
+ depends_on = [module.mysql]
  source = "./modules/app"
  app_port = 8080
  component = "backend"
