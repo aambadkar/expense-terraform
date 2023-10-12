@@ -133,5 +133,6 @@ resource "aws_lb_target_group" "tg" {
     healthy_threshold = 2
     interval = 5
     port = var.app_port
+    path = "/health"
   }
 }
