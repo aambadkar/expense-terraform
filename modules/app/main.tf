@@ -122,6 +122,12 @@ resource "aws_autoscaling_group" "asg" {
     id      = aws_launch_template.template.id
     version = "$Latest"
   }
+  tag {
+
+    key                 = "project"
+    propagate_at_launch = true
+    value               = "expense"
+  }
 }
 resource "aws_lb_target_group" "tg" {
   name     = "${var.env}-${var.component}-tg"
