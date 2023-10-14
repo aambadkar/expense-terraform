@@ -51,9 +51,9 @@ resource "aws_route53_record" "www" {
   ttl     = 300
   records = [aws_lb.alb.dns_name]
 }
-resource "aws_lb" "front_end" {
-  # ...
-}
+#resource "aws_lb" "front_end" {
+#  # ...
+#}
 
 resource "aws_lb_listener" "listener-http-public" {
   count = var.alb_type == "public" ? 1 : 0
